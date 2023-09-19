@@ -27,10 +27,30 @@ section{
 .sosial-media{
 	letter-spacing: 20px;
 }
-.html-st, .boostrap-st, .git-st, .css-st, .js-st{
+.html-st, .boostrap-st, .git-st, .css-st, .js-st, .php-st,.python-st,.db-st,.laravel-st{
 	transform: rotate(10deg);
 	transition: 0.5s;
 }
+
+.php-st:hover{
+	transform: rotate(0deg);
+	color: #4F5B93;
+}
+
+.python-st:hover{
+	transform: rotate(0deg);
+	color: #3572A5;
+}
+
+.db-st:hover{
+	transform: rotate(0deg);
+	color: #007ACC;
+}
+.laravel-st:hover {
+	transform: rotate(0deg);
+	color: #FF2D20;
+}
+
 .html-st:hover{
 	transform: rotate(0deg);
 	color: #FF5733;
@@ -158,6 +178,21 @@ section{
 	}
 	.bi-facebook{
 		color: #3b5998;
+	}
+	.php-st {
+		color: #4F5B93; /* Warna PHP yang mungkin sesuai */
+	}
+	
+	.python-st {
+		color: #3572A5; /* Warna Python yang mungkin sesuai */
+	}
+	
+	.db-st {
+		color: #007ACC; /* Warna MySQL dan MongoDB yang mungkin sesuai */
+	}
+	
+	.laravel-st {
+		color: #FF2D20; /* Warna Laravel yang mungkin sesuai */
 	}
 }
 /* Extra large devices (large laptops and desktops, 1200px and up) */
