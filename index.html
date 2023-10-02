@@ -6,27 +6,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-     <!-- favicon -->
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
     <!-- AOS -->
-     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
     <!-- boostrap icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
 
-    <!-- my css -->
+    <!-- css -->
     <link rel="stylesheet" href="style.css">
-    
-    
-    <meta name="application-name" content="&nbsp;"/>
-    <meta name="msapplication-TileColor" content="#FFFFFF" />
-    <meta name="msapplication-TileImage" content="ico/mstile-144x144.png" />
-    <meta name="msapplication-square70x70logo" content="ico/mstile-70x70.png" />
-    <meta name="msapplication-square150x150logo" content="ico/mstile-150x150.png" />
-    <meta name="msapplication-wide310x150logo" content="ico/mstile-310x150.png" />
-    <meta name="msapplication-square310x310logo" content="ico/mstile-310x310.png" />
 
     <title>My Portfolio | Krisnarhesa</title>
   </head>
@@ -50,6 +40,9 @@
             </li>
             <li class="nav-item">
               <a class="nav-link nvbar" href="#skill">Tools&Skills</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nvbar" href="#projects">Project</a>
             </li>
             <li class="nav-item">
               <a class="nav-link nvbar" href="#contact">Contact</a>
@@ -263,7 +256,7 @@
     </div>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#192734" fill-opacity="1" d="M0,288L0,96L110.8,96L110.8,256L221.5,256L221.5,192L332.3,192L332.3,160L443.1,160L443.1,224L553.8,224L553.8,288L664.6,288L664.6,64L775.4,64L775.4,128L886.2,128L886.2,96L996.9,96L996.9,288L1107.7,288L1107.7,192L1218.5,192L1218.5,256L1329.2,256L1329.2,96L1440,96L1440,320L1329.2,320L1329.2,320L1218.5,320L1218.5,320L1107.7,320L1107.7,320L996.9,320L996.9,320L886.2,320L886.2,320L775.4,320L775.4,320L664.6,320L664.6,320L553.8,320L553.8,320L443.1,320L443.1,320L332.3,320L332.3,320L221.5,320L221.5,320L110.8,320L110.8,320L0,320L0,320Z"></path></svg>
   </section>
-  <!-- akhir contanct -->
+  <!-- akhir contact -->
 
   <!-- footer -->
   <footer class="p-3 text-center fs-5">
@@ -298,33 +291,20 @@
     gsap.from('.sosial-media a', { duration: 2.5, delay: 2, x: -100, opacity: 0, ease: 'back' });
   </script>
 
-  <!-- js formsubmit -->
-  <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwU95r84VCUgSY4BY6_7hmmj3SSRH0IGJO85TZpychn_H7WhozqqPaZ-o1KsF5vu2qs7Q/exec'
-    const form = document.forms['submit-to-google-sheet'];
-    const btnKirim = document.querySelector(".btn-kirim");
-    const btnLoading = document.querySelector(".btn-loading");
-    const myAlert = document.querySelector(".my-alert");
+<!-- js formsubmit -->
+<script>
+  const form = document.forms['submit-to-google-sheet'];
+  const btnKirim = document.querySelector('.btn-kirim');
+  const myAlert = document.querySelector('.my-alert');
 
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      // ketika tombol submit diklik
-      // tampilkan tombol loading, hilangkan tombol kirim
-      btnLoading.classList.toggle("d-none");
-      btnKirim.classList.toggle("d-none");
-      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-        .then(response => {
-          // tampilkan tombol kirim, hilangkan tombol loading
-          btnLoading.classList.toggle("d-none");
-          btnKirim.classList.toggle("d-none");
-          // tampilkan alert
-          myAlert.classList.toggle("d-none");
-          // resat form
-          form.reset();
-          console.log('Success!', response)
-        })
-        .catch(error => console.error('Error!', error.message))
-    })
-  </script>
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    // ketika tombol submit diklik
+    // tampilkan pesan "Berhasil Submit"
+    myAlert.classList.toggle('d-none');
+    // reset form (jika Anda ingin menghapus masukan data)
+    form.reset();
+  });
+</script>
 </body>
 </html>
