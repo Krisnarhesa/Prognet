@@ -1,65 +1,73 @@
 /*google font*/
-@import url('https://fonts.googleapis.com/css2?family=Trispace:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Trispace:wght@300&display=swap");
 /*fontawesome*/
-body{
-	font-family: 'Trispace', monospace;
-	color: white;
+body {
+  font-family: "Trispace", monospace;
+  color: white;
 }
-.navbar, footer{
-	background-color:#15202b;
+.navbar,
+footer {
+  background-color: #15202b;
 }
-.navbar-toggler:focus, .navbar-toggler:active, .navbar-toggler-icon:focus {
-    outline: none;
-    box-shadow: none;
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+  outline: none;
+  box-shadow: none;
 }
-section{
-	padding-top: 6rem;
+section {
+  padding-top: 6rem;
 }
 #hello {
-	background-color:#192734;
+  background-color: #192734;
 }
 #form {
-	background-color:#192734;
+  background-color: #192734;
 }
-#about, #projects {
-	background-color:#22303c;
+#about,
+#projects {
+  background-color: #22303c;
 }
-.sosial-media{
-	letter-spacing: 20px;
+.sosial-media {
+  letter-spacing: 20px;
 }
-.bi-github, .fa-instagram, .bi-linkedin, .fa-twitter, .bi-facebook{
-	color: white;
-	transition: 0.5s;
+.bi-github,
+.bi-linkedin,
+.bi-facebook {
+  color: white;
+  transition: 0.5s;
 }
-.bi-github:hover{
-	color: #000;
-	font-size: 40px;
+.bi-github:hover {
+  color: #000;
+  font-size: 40px;
 }
-.bi-linkedin:hover{
-	color: #2867B2;
-	font-size: 40px;
+.bi-linkedin:hover {
+  color: #2867b2;
+  font-size: 40px;
 }
-.bi-facebook:hover{
-	color: #3b5998;
-	font-size: 40px;
+.bi-facebook:hover {
+  color: #3b5998;
+  font-size: 40px;
 }
-.btn:focus, .btn:active, .btn:focus {
-    outline: none;
-    box-shadow: none;
+.btn:focus,
+.btn:active,
+.btn:focus {
+  outline: none;
+  box-shadow: none;
 }
-.pp{
-	box-shadow: -15px -15px #192734;
+.pp {
+  box-shadow: -15px -15px #192734;
 }
-.h2{
-	text-shadow: 3px 3px gray;
+.h2 {
+  text-shadow: 3px 3px gray;
 }
 .sosial-media a {
-	font-size: 2rem;
-	margin-right: 0px;
-	color: white;
+  font-size: 2rem;
+  margin-right: 0px;
+  color: white;
 }
 .table-white {
-    background-color: #192734;
-    color: #fff;
-	box-shadow: -15px -15px #15202b
+  background-color: #192734;
+  color: #fff;
+  box-shadow: -15px -15px #15202b;
 }
