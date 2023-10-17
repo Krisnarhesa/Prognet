@@ -32,7 +32,7 @@
                         <a class="nav-link nvbar" aria-current="page" href="index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link nvbar active" href="#form">Student Response Form</a>
+                        <a class="nav-link nvbar active" href="#form">Detail Student Response Form</a>
                     </li>
                 </ul>
             </div>
@@ -47,75 +47,58 @@
                 <div class="col-md-6 mx-auto">
                     <div class="text-center">
                         <div class="col">
-                            <h1 class="h2">Student Response Data Form</h1><br>
-                            <h2 class="h2">Data Saved Successfully</h2>
+                            <h1 class="h2">Student Details Response Data Form</h1>
                         </div>
                     </div>
                     <div class="row justify-content-center mb-5">
                         <div class="col-md-50">
                         <?php
                         include 'koneksi.php';
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $fullName = isset($_POST["FullName"]) ? $_POST["FullName"] : "";
-    $nickName = isset($_POST["NickName"]) ? $_POST["NickName"] : "";
-    $nim = isset($_POST["Nim"]) ? $_POST["Nim"] : "";
-    $faculty = isset($_POST["Faculty"]) ? $_POST["Faculty"] : "";
-    $email = isset($_POST["Email"]) ? $_POST["Email"] : "";
-    $password = isset($_POST["Password"]) ? $_POST["Password"] : "";
-    $dateOfBirth = isset($_POST["DateOfBirth"]) ? $_POST["DateOfBirth"] : "";
-    $address = isset($_POST["Address"]) ? $_POST["Address"] : "";
-    $gender = isset($_POST["Gender"]) ? $_POST["Gender"] : "";
-    $experience = isset($_POST["Experience"]) ?  $_POST['Experience'] : [];
-    $description = isset($_POST["Textarea"]) ? $_POST["Textarea"] : "";
-    $favoriteColor = isset($_POST["Color"]) ? $_POST["Color"] : "";
-    $Skill = isset($_POST["Range"]) ? $_POST["Range"] : "";
-    $File = isset($_POST["File"]) ? $_POST["File"] : "";
-    $personalTerms= isset($_POST["PersonalTerms"]) ? 'Accept' : 'Denied';
-    
-}
-
-
-
-$sql = "INSERT INTO tb_formulir (FullName, NickName, Nim, Faculty, Email, Password, Date_of_birth, Address, Gender, Experience, Describe_yourself, Favorite_color, Skills_range, Profile_picture, Terms)
-        VALUES ('$fullName', '$nickName', '$nim', '$faculty', '$email', '$password', '$dateOfBirth', '$address', '$gender', '$experience', '$description', '$favoriteColor', '$Skill', '$File', '$personalTerms')";
-
-if ($koneksi->query($sql) === TRUE) {
-    echo '<div class="container mt-5">';
-    echo '<table class="table table-borderless table-white">';
-    echo '<tbody>';
-    
-    // Tabel untuk menampilkan data
-    displayDataRow("Full Name", $fullName);
-    displayDataRow("Nick Name", $nickName);
-    displayDataRow("NIM", $nim);
-    displayDataRow("Interest", $faculty);
-    displayDataRow("Email", $email);
-    displayDataRow("Password", $password);
-    displayDataRow("Date Of Birth", $dateOfBirth);
-    displayDataRow("Address", $address);
-    displayDataRow("Gender", $gender);
-    displayDataRow("Experience", $experience);
-    displayDataRow("Describe Yourself", $description);
-    displayDataRow("Favorite Color", $favoriteColor);
-    displayDataRow("Skills Range", $Skill);
-    displayDataRow("Profile Picture", $File);
-    displayDataRow("Terms", $personalTerms);
-
-    echo '</tbody>';
-    echo '</table>';
-    echo '</div>';
-} else {
-    echo "<p>No data submitted.</p>";
-    echo "Error: " . $sql . "<br>" . $koneksi->error;
-}
-
-function displayDataRow($label, $value) {
-    echo '<tr class="">';
-    echo '<td> <strong>' . $label . '</strong> </td>';
-    echo '<td> :' . $value . '</td>';
-    echo '</tr>';
-}
-
+                        if (isset($_GET['id'])) {
+                            $id = $_GET['id'];
+                            $sql = "SELECT * FROM tb_formulir WHERE id = $id";
+                            $result = $koneksi->query($sql);
+                        
+                            if ($result->num_rows > 0) {
+                                $row = $result->fetch_assoc();
+                                echo '<div class="container mt-5">';
+                                echo '<table class="table table-borderless table-white">';
+                                echo '<tbody>';
+                                
+                                // Tabel untuk menampilkan data sebagai baris
+                                displayDataRow("Full Name", $row["Fullname"]);
+                                displayDataRow("Nick Name", $row["NickName"]);
+                                displayDataRow("NIM", $row["Nim"]);
+                                displayDataRow("Faculty", $row["Faculty"]);
+                                displayDataRow("Email", $row["Email"]);
+                                displayDataRow("Password", $row["Password"]);
+                                displayDataRow("Date Of Birth", $row["Date_of_birth"]);
+                                displayDataRow("Address", $row["Address"]);
+                                displayDataRow("Gender", $row["Gender"]);
+                                displayDataRow("Experience", $row["Experience"]);
+                                displayDataRow("Describe Yourself", $row["Describe_yourself"]);
+                                displayDataRow("Favorite Color", $row["Favorite_color"]);
+                                displayDataRow("Skills Range", $row["Skills_range"]);
+                                displayDataRow("Profile Picture", $row["Profile_picture"]);
+                                displayDataRow("Terms", $row["Terms"]);
+                        
+                                echo '</tbody>';
+                                echo '</table>';
+                                echo '</div>';
+                            } else {
+                                echo "<p>Data not found.</p>";
+                            }
+                        } else {
+                            echo "<p>Invalid request.</p>";
+                        }
+                        
+                        function displayDataRow($label, $value) {
+                            echo '<tr class="">';
+                            echo '<td> <strong>' . $label . '</strong> </td>';
+                            echo '<td> :' . $value . '</td>';
+                            echo '</tr>';
+                        }
+                        
 $koneksi->close();
 
 ?>

@@ -71,3 +71,6 @@ section {
   color: #fff;
   box-shadow: -15px -15px #15202b;
 }
+.form-check-input.form-check-lg {
+  transform: scale(1.20);
+}

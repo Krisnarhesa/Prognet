@@ -47,114 +47,142 @@
                 <div class="col-md-6 mx-auto">
                     <div class="text-center">
                         <div class="col">
-                            <h1 class="h2">Student Biodata Form</h1><br>
+                            <h1 class="h2">Edit Student Biodata Form</h1><br>
                         </div>
                     </div>
+                    <?php
+                        include 'koneksi.php';
+
+                        if (isset($_GET['id'])) {
+                            $id = $_GET['id'];
+                            $sql = "SELECT * FROM tb_formulir WHERE id = $id";
+                            $result = $koneksi->query($sql);
+
+                            if ($result->num_rows > 0) {
+                                $row = $result->fetch_assoc();
+
+                        ?>
                     <div class="row justify-content-center mb-5">
                         <div class="col-md-50">
-                            <form method="post" action="answer.php" name="Data Form" >
+                            <form method="post" action="update.php" >
                                 <div class="col-12 mb-3">
                                     <div class="alert alert-info alert-dismissible fade show d-none my-alert" role="alert">
                                         <strong>Your Message Has Been Successfully Submitted!</strong>
                                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                     </div>
+                                <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
                                 <div class="col-12 mb-3">
                                     <label for="inputFullName" class="form-label">Full Name</label>
-                                    <input type="text" class="form-control" name="FullName" id="inputFullName" required/>
+                                    <input type="text" class="form-control" name="FullName" id="inputFullName" value="<?php echo $row['Fullname']; ?>" required/>
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="inputNickName" class="form-label">Nick Name</label>
-                                    <input type="text" class="form-control" name="NickName" id="inputNickName" required/>
+                                    <input type="text" class="form-control" name="NickName" id="inputNickName" value="<?php echo $row['NickName']; ?>" required/>
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="inputNim" class="form-label">NIM </label><br>
-                                    <input type="text" id="inputNim" class="form-control" name="Nim" pattern="[0-9]{10}" maxlength="10" required>
+                                    <input type="text" id="inputNim" class="form-control" name="Nim" pattern="[0-9]{10}" maxlength="10" value="<?php echo $row['Nim']; ?>" required>
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="inputFaculty" class="form-label">Faculty</label>
                                     <select id="inputFaculty" name="Faculty" class="form-select" required>
                                         <option selected>Choose Faculty</option>
-                                        <option>Faculty of Science</option>
-                                        <option>Faculty of Arts</option>
-                                        <option>Faculty of Engineering</option>
-                                        <option>Faculty of Business</option>
-                                        <option>Faculty of Medicine</option>
+                                        <option <?php if ($row['Faculty'] == 'Faculty of Science') echo 'selected'; ?>>Faculty of Science</option>
+                                        <option <?php if ($row['Faculty'] == 'Faculty of Arts') echo 'selected'; ?>>Faculty of Arts</option>
+                                        <option <?php if ($row['Faculty'] == 'Faculty of Engineering') echo 'selected'; ?>>Faculty of Engineering</option>
+                                        <option <?php if ($row['Faculty'] == 'Faculty of Business') echo 'selected'; ?>>Faculty of Business</option>
+                                        <option <?php if ($row['Faculty'] == 'Faculty of Medicine') echo 'selected'; ?>>Faculty of Medicine</option>
                                     </select>
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="inputEmail" class="form-label">Gmail</label>
-                                    <input type="email" class="form-control" name="Email" id="inputEmail" placeholder="example@gmail.com" required />
+                                    <input type="email" class="form-control" name="Email" id="inputEmail" placeholder="example@gmail.com" value="<?php echo $row['Email']; ?>" required />
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="inputPassword" class="form-label">Password</label>
-                                    <input type="password" class="form-control" name="Password" id="inputPassword" required/>
+                                    <input type="password" class="form-control" name="Password" id="inputPassword" value="<?php echo $row['Password']; ?>" required/>
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="inputDateOfBirth" class="form-label">Date Of Birth</label>
-                                    <input type="date" class="form-control" name="DateOfBirth" id="inputDateOfBirth"  required/>
+                                    <input type="date" class="form-control" name="DateOfBirth" id="inputDateOfBirth"  value="<?php echo $row['Date_of_birth']; ?>" required/>
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="inputAddress" class="form-label">Address</label>
-                                    <input type="text" class="form-control" name="Address" id="inputAddress" required/>
+                                    <input type="text" class="form-control" name="Address" id="inputAddress" value="<?php echo $row['Address']; ?>" required/>
                                 </div>
                                 <div>
                                     <label for="inputGender" class="form-label">Gender</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="Gender" id="inputMaleGender" value="Male" />
+                                    <input class="form-check-input" type="radio" name="Gender" id="inputMaleGender" value="Male" <?php if ($row['Gender'] == 'Male') echo 'checked'; ?> />
                                     <label class="form-check-label" for="inputMaleGender"> Male </label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="Gender" id="inputFemaleGender" value="Female" />
+                                    <input class="form-check-input" type="radio" name="Gender" id="inputFemaleGender" value="Female" <?php if ($row['Gender'] == 'Female') echo 'checked'; ?>/>
                                     <label class="form-check-label" for="inputFemaleGender"> Female </label>
                                 </div>
                                 <div>
                                     <label for="inputExperience" class="form-label">Experience</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="Experience" id="Volunteer" value="Volunteer"/>
+                                    <input class="form-check-input" type="checkbox" name="Experience" id="Volunteer" value="Volunteer" <?php echo ($row['Experience'] == "Volunteer") ? 'checked' : '';?> />
                                     <label class="form-check-label" for="Volunteer">Volunteer</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="Experience" id="Internship" value="Internship" />
+                                    <input class="form-check-input" type="checkbox" name="Experience" id="Internship" value="Internship" <?php echo ($row['Experience'] == "Internship") ? 'checked' : '';?> />
                                     <label class="form-check-label" for="Internship">Internship</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="Experience" id="Workshop" value="Workshop"/>
+                                    <input class="form-check-input" type="checkbox" name="Experience" id="Workshop" value="Workshop" <?php echo ($row['Experience'] == "Workshop") ? 'checked' : '';?>/>
                                     <label class="form-check-label" for="Workshop">Workshop</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" name="Experience" id="Training" value="Training"/>
+                                    <input class="form-check-input" type="checkbox" name="Experience" id="Training" value="Training" <?php echo ($row['Experience'] == "Training") ? 'checked' : '';?>/>
                                     <label class="form-check-label" for="Training">Training</label>
                                 </div>
                                 
                                 <div class="col-12 mb-3">
                                     <label for="inputTextarea" class="form-label">Describe Yourself</label>
-                                    <textarea class="form-control" name="Textarea" id="inputTextarea" placeholder="Describe here" required rows="4"></textarea>
+                                    <textarea class="form-control" name="Textarea" id="inputTextarea" placeholder="Describe here" required rows="4"> <?php echo $row['Describe_yourself']; ?></textarea>
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="inputColor" class="form-label">Favorite Color</label>
-                                    <input type="color" class="form-control" name="Color" id="inputColor" />
+                                    <input type="color" class="form-control" name="Color" id="inputColor" value="<?php echo $row['Favorite_color']; ?>"/>
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="inputRange" class="form-label">skills Range</label>
-                                    <input type="range" class="form-control" name="Range" id="inputRange" min="0" max="100" step="1" />
+                                    <input type="range" class="form-control" name="Range" id="inputRange" min="0" max="100" step="1" value="<?php echo $row['Skills_range']; ?>"/>
                                 </div>
                                 <div class="col-12 mb-3">
                                     <label for="inputFile" class="form-label">Upload Your Profile Picture</label>
-                                    <input type="file" class="form-control" name="File" id="inputFile" required/>
+                                    <input type="file" class="form-control" name="File" id="inputFile" <?php if (!empty($row['Profile_picture'])): ?> value="<?php echo $row['Profile_picture']; ?>" <?php endif; ?>/>
+                                        <?php if (!empty($row['Profile_picture'])): ?>
+                                <div class="col-12 mb-3">
+                                    <p>Uploaded Profile Picture: <?php echo $row['Profile_picture']; ?></p>
+                                </div>
+                                <?php endif; ?>
                                 </div>
                                 <div class="form-check form-switch" class="col-12 mb-3">
                                     <label class="form-check-label" for="inputPersonalTerms">I Agree to the Terms and Conditions</label>
-                                    <input class="form-check-input form-check-lg" type="checkbox" name="PersonalTerms" id="inputPersonalTerms" required>
+                                    <input class="form-check-input form-check-lg" type="checkbox" name="PersonalTerms" id="inputPersonalTerms" <?php if (!empty($row['Terms'])): ?> checked <?php endif; ?>required >
                                 </div>
                                 <div class="col-12 mb-3">
                                     <button type="reset" class="w-100 btn btn-danger btn-reset">Reset</button>
                                 </div>
                                 <div>
-                                    <button class="w-100 btn btn-success btn-kirim" type="submit">Submit</button>
+                                    <button class="w-100 btn btn-success btn-kirim" type="submit">Resubmit</button>
                                 </div>
                             </form>
+                            
+                            <?php
+                            } else {
+                                echo "<p>Data Not Found</p>";
+                            }
+                        } else {
+                            echo "<p>Invalid Request</p>";
+                        }
+                        $koneksi->close();
+                        ?>
                         </div>
                     </div>
                 </div>
