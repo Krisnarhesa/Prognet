@@ -60,7 +60,7 @@ $result = $koneksi->query($sql);
 if ($result->num_rows > 0) {
     $tableHtml = '<table class="table table-white" >';
     $tableHtml .= '<thead>';
-    $tableHtml .= '<tr><th <th class="text-center">No</th><th class="text-center">Nama</th><th class="text-center">NIM</th><th class="text-center">Action</th></tr>';
+    $tableHtml .= '<tr><th <th class="text-center">No</th><th class="text-center">Full Name</th><th class="text-center">NIM</th><th class="text-center">Action</th></tr>';
     $tableHtml .= '</thead>';
     $tableHtml .= '<tbody>';
     $counter = 1;

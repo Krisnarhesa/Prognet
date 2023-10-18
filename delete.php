@@ -82,9 +82,55 @@ if (isset($_GET['id'])) {
 } else {
     echo "<p>Invalid request.</p>";
 }
+
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $sql = "SELECT * FROM tb_formulir WHERE id = $id";
+    $result = $koneksi->query($sql);
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        echo '<div class="container mt-5">';
+        echo '<table class="table table-borderless table-white">';
+        echo '<tbody>';
+        
+        // Tabel untuk menampilkan data sebagai baris
+        displayDataRow("Full Name", $row["Fullname"]);
+        displayDataRow("Nick Name", $row["NickName"]);
+        displayDataRow("NIM", $row["Nim"]);
+        displayDataRow("Faculty", $row["Faculty"]);
+        displayDataRow("Email", $row["Email"]);
+        displayDataRow("Password", $row["Password"]);
+        displayDataRow("Date Of Birth", $row["Date_of_birth"]);
+        displayDataRow("Address", $row["Address"]);
+        displayDataRow("Gender", $row["Gender"]);
+        displayDataRow("Experience", $row["Experience"]);
+        displayDataRow("Describe Yourself", $row["Describe_yourself"]);
+        displayDataRow("Favorite Color", $row["Favorite_color"]);
+        displayDataRow("Skills Range", $row["Skills_range"]);
+        displayDataRow("Profile Picture", $row["Profile_picture"]);
+        displayDataRow("Terms", $row["Terms"]);
+
+        echo '</tbody>';
+        echo '</table>';
+        echo '</div>';
+    } else {
+        echo "<p>Data not found.</p>";
+    }
+} else {
+    echo "<p>Invalid request.</p>";
+}
+
+function displayDataRow($label, $value) {
+    echo '<tr class="">';
+    echo '<td> <strong>' . $label . '</strong> </td>';
+    echo '<td> :' . $value . '</td>';
+    echo '</tr>';
+}
+
+
 $koneksi->close();
 ?>
-
 
 </div>
                         </div>
